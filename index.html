@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Loja de Pesca</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div id="login">
+        <div class="login-container">
+            <h2>Login</h2>
+            <input type="text" id="nomeUsuario" placeholder="Digite seu nome">
+            <button onclick="entrarNaLoja()">Entrar</button>
+        </div>
+    </div>
+
+    <div id="loja" style="display: none;">
+        <header>
+            <div class="header-container">
+                <h1>Bem-vindo, <span id="nomeExibido"></span></h1>
+                <button onclick="mostrarConta()">Minha Conta</button>
+            </div>
+        </header>
+
+        <section id="produtos">
+            <div class="produto">
+                <h2>Vara de Pesca</h2>
+                <img src="vara.webp" alt="Vara" class="imagem">
+                <p class="preco">R$ 500,00</p>
+                <p>Vara de pesca de alta resistência, ideal para até 200 kg de peixe.</p>
+                <button onclick="comprar('Vara', 500)">Comprar</button>
+                <div class="comentarios">
+                    <textarea placeholder="Escreva um comentário"></textarea>
+                    <button onclick="comentar(this)">Comentar</button>
+                    <button onclick="mostrarComentarios(this)">Mostrar Comentários</button>
+                    <div class="lista-comentarios"></div>
+                </div>
+            </div>
+
+            <div class="produto">
+                <h2>Chumbada</h2>
+                <img src="chumbada.webp" alt="Chumbada" class="imagem">
+                <p class="preco">R$ 20,00</p>
+                <p>Chumbada ideal para pesca em águas profundas.</p>
+                <button onclick="comprar('Chumbada', 20)">Comprar</button>
+                <div class="comentarios">
+                    <textarea placeholder="Escreva um comentário"></textarea>
+                    <button onclick="comentar(this)">Comentar</button>
+                    <button onclick="mostrarComentarios(this)">Mostrar Comentários</button>
+                    <div class="lista-comentarios"></div>
+                </div>
+            </div>
+
+            <div class="produto">
+                <h2>Isca Artificial</h2>
+                <img src="isca.webp" alt="Isca" class="imagem">
+                <p class="preco">R$ 15,00</p>
+                <p>Isca com aparência realista, ideal para atrair peixes.</p>
+                <button onclick="comprar('Isca', 15)">Comprar</button>
+                <div class="comentarios">
+                    <textarea placeholder="Escreva um comentário"></textarea>
+                    <button onclick="comentar(this)">Comentar</button>
+                    <button onclick="mostrarComentarios(this)">Mostrar Comentários</button>
+                    <div class="lista-comentarios"></div>
+                </div>
+            </div>
+
+            <div class="produto">
+                <h2>Linha de Pesca</h2>
+                <img src="linha.jpg" alt="Linha" class="imagem">
+                <p class="preco">R$ 30,00</p>
+                <p>Linha super resistente para peixes grandes e pesados.</p>
+                <button onclick="comprar('Linha', 30)">Comprar</button>
+                <div class="comentarios">
+                    <textarea placeholder="Escreva um comentário"></textarea>
+                    <button onclick="comentar(this)">Comentar</button>
+                    <button onclick="mostrarComentarios(this)">Mostrar Comentários</button>
+                    <div class="lista-comentarios"></div>
+                </div>
+            </div>
+        </section>
+
+        <div id="conta" style="display: none;">
+            <h2>Minha Conta</h2>
+            <p>Nome: <span id="nomeConta"></span></p>
+            <p>Itens comprados:</p>
+            <ul id="listaCompras"></ul>
+            <p>Total gasto: R$ <span id="totalGasto">0.00</span></p>
+            <button onclick="voltarParaLoja()">Voltar</button>
+        </div>
+    </div>
+</body>
+
+<style>
+    body {
+        font-family: 'Open Sans', sans-serif;
+        background-color: #f4f4f9;
+        margin: 0;
+        padding: 0;
+    }
+
+    h1, h2 {
+        font-family: 'Roboto', sans-serif;
+    }
+
+    .login-container, .header-container {
+        text-align: center;
+        margin: 20px;
+    }
+
+    #login {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+    }
+
+    #login input, #login button {
+        padding: 12px;
+        margin: 10px;
+        border-radius: 5px;
+        font-size: 16px;
+    }
+
+    #login button {
+        background-color: #007BFF;
+        color: white;
+        border: none;
+    }
+
+    #login button:hover {
+        background-color: #0056b3;
+    }
+
+    #loja {
+        padding: 40px;
+    }
+
+    header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 40px;
+    }
+
+    .produto {
+        background-color: white;
+        border-radius: 8px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+        margin-bottom: 30px;
+        text-align: center;
+    }
+
+    .imagem {
+        width: 200px;
+        height: 200px;
+        border-radius: 10px;
+        margin-bottom: 20px;
+    }
+
+    .preco {
+        font-size: 18px;
+        font-weight: bold;
+        margin: 10px 0;
+        color: #007BFF;
+    }
+
+    button {
+        background-color: #28a745;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        font-size: 16px;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    button:hover {
+        background-color: #218838;
+    }
+
+    .comentarios {
+        margin-top: 20px;
+    }
+
+    .comentarios textarea {
+        width: 100%;
+        height: 50px;
+        padding: 10px;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+    }
+
+    .comentarios button {
+        margin-top: 10px;
+        padding: 10px 20px;
+        background-color: #ffc107;
+        border: none;
+        color: white;
+        cursor: pointer;
+    }
+
+    .comentarios button:hover {
+        background-color: #e0a800;
+    }
+
+    #conta {
+        background-color: #ffffff;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    ul {
+        list-style-type: none;
+    }
+
+    ul li {
+        background-color: #f8f9fa;
+        padding: 10px;
+        margin: 5px 0;
+        border-radius: 5px;
+    }
+
+</style>
+
+<script>
+    let usuario = { nome: "", compras: [], total: 0 };
+
+    function entrarNaLoja() {
+        const nome = document.getElementById("nomeUsuario").value.trim();
+        if (nome) {
+            usuario.nome = nome;
+            document.getElementById("nomeExibido").textContent = nome;
+            document.getElementById("nomeConta").textContent = nome;
+            document.getElementById("login").style.display = "none";
+            document.getElementById("loja").style.display = "block";
+        }
+    }
+
+    function comprar(produto, preco) {
+        usuario.compras.push(produto);
+        usuario.total += preco;
+        alert(`Você comprou: ${produto}`);
+    }
+
+    function mostrarConta() {
+        document.getElementById("produtos").style.display = "none";
+        document.getElementById("conta").style.display = "block";
+
+        const lista = document.getElementById("listaCompras");
+        lista.innerHTML = "";
+        usuario.compras.forEach(item => {
+            const li = document.createElement("li");
+            li.textContent = item;
+            lista.appendChild(li);
+        });
+        document.getElementById("totalGasto").textContent = usuario.total.toFixed(2);
+    }
+
+    function voltarParaLoja() {
+        document.getElementById("conta").style.display = "none";
+        document.getElementById("produtos").style.display = "block";
+    }
+
+    function comentar(botao) {
+        const area = botao.previousElementSibling;
+        const texto = area.value.trim();
+        if (texto) {
+            let comentarios = JSON.parse(localStorage.getItem(botao.dataset.produto || "comentarios")) || [];
+            comentarios.push(texto);
+            localStorage.setItem(botao.dataset.produto || "comentarios", JSON.stringify(comentarios));
+            area.value = "";
+            alert("Comentário adicionado!");
+        }
+    }
+
+    function mostrarComentarios(botao) {
+        const container = botao.nextElementSibling;
+        const comentarios = JSON.parse(localStorage.getItem(botao.dataset.produto || "comentarios")) || [];
+        container.innerHTML = comentarios.map(c => `<p>${c}</p>`).join("");
+    }
+</script>
+</html>
